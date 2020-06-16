@@ -35,12 +35,16 @@ class LoginFragment : Fragment() {
     }
 
     /**
-     * called after the onCreate() method.  used to assign this fragment's View vars
+     * called after the onCreate() method of the Parent activity.  used to assign this fragment's View vars
      */
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
+     //   viewModel = ViewModelProviders.of(this).get(LoginViewModel::class.java)
         // TODO: Use the ViewModel
+
+        viewModel = ViewModelProviders.of(this, LoginViewModelFactory(activity?.application))
+            .get(LoginViewModel::class.java)
+
 
         val adapter = MyAdapter()
         recycler.adapter = adapter
