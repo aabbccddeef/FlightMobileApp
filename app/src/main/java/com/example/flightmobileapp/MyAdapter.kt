@@ -6,6 +6,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
+/**
+ * Adapter to populate the RecyclerView
+ */
 public class MyAdapter : RecyclerView.Adapter<MyAdapter.ViewHolder>(){
 
 
