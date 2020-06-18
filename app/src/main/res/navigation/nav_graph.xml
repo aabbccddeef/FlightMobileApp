@@ -6,7 +6,7 @@
     app:startDestination="@id/loginFragment">
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.flightmobileapp.LoginFragment"
+        android:name="com.example.flightmobileapp.login.LoginFragment"
         android:label="login_fragment"
         tools:layout="@layout/login_fragment" />
 </navigation>

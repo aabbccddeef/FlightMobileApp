@@ -5,13 +5,22 @@ import androidx.room.PrimaryKey
 
 class DatabaseEntities {
 
-    @Entity(tableName = "servers_table")
+/*    @Entity(tableName = "servers_table")
     data class Server(
 
-        @PrimaryKey
+        @PrimaryKey(autoGenerate = true)
         val id:String,
 
         val url: String
+    )*/
+
+    @Entity(tableName = "servers_table")
+     class Server(
+        val url: String
     )
+    {
+        @PrimaryKey(autoGenerate = true)
+        var id:Int = 0
+    }
 
 }
