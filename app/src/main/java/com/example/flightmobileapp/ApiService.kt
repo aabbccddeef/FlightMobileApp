@@ -11,8 +11,13 @@ import retrofit2.http.POST
 
 private const val BASE_URL = "https://localhost:44383/"
 
+/**
+ * set connection infrastructure to server with REST API
+ */
 class ApiService {
-
+    /**
+     * interface with REST api's
+     */
     interface IApiService{
         @GET(BASE_URL + "/api/screenshot")
         fun getImage(): Deferred<String>

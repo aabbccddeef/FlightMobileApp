@@ -10,6 +10,8 @@ import androidx.navigation.fragment.findNavController
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
+ *
+ * TODO
  */
 class SecondFragment : Fragment() {
 

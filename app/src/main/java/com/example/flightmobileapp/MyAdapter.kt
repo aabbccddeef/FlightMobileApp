@@ -28,6 +28,9 @@ public class MyAdapter(val listener: Iselected) : RecyclerView.Adapter<MyAdapter
 
     var selected: Int = -1
 
+    /**
+     * populate View with id ='urls' with urls from DB
+     */
     fun setUrls(urls: ArrayList<String>){
         this.urls = urls
         notifyDataSetChanged()
@@ -39,10 +42,16 @@ public class MyAdapter(val listener: Iselected) : RecyclerView.Adapter<MyAdapter
         return ViewHolder(v)
     }
 
+    /**
+     * getter to get num of url's in View with id='urls'
+     */
     override fun getItemCount(): Int {
         return urls.size
     }
 
+    /**
+     * Databinding between url's in Repository to Login fragment's Recycler View
+     */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.textView.text = urls[position].toString()
         if(position == selected){
@@ -64,6 +73,9 @@ public class MyAdapter(val listener: Iselected) : RecyclerView.Adapter<MyAdapter
         val row_parent = itemView.findViewById(R.id.row_parent) as View
     }
 
+    /**
+     * interface with one method - indicate which url is selected by user
+     */
     interface Iselected{
         fun onSelected(url: String)
     }

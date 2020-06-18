@@ -9,6 +9,9 @@ import kotlinx.coroutines.withContext
 
 class Repository(private val database: ServersDatabase) {
 
+    /**
+     * bind url that user has entered to DB
+     */
     suspend fun AddServer(server: DatabaseEntities.Server){
         withContext(Dispatchers.IO) {
             database.serversDao.addServer(server)
@@ -24,6 +27,9 @@ class Repository(private val database: ServersDatabase) {
 
     val urls: LiveData<List<String>> = database.serversDao.getLastFive()
 
+    /**
+     * async method - called from GET command , get the picture from server
+     */
     suspend fun getImage(){
         withContext(Dispatchers.IO) {
             val getImageDeffered = ApiService.ServerApi.retrofitService.getImage()
