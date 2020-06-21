@@ -1,18 +1,20 @@
 package com.example.flightmobileapp.login
 
-import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.flightmobileapp.MyAdapter
 import com.example.flightmobileapp.R
+import com.example.flightmobileapp.Repository
 import kotlinx.android.synthetic.main.login_fragment.*
 
 
@@ -66,10 +68,10 @@ class LoginFragment : Fragment() {
 
         val adapter = MyAdapter(object: MyAdapter.Iselected {
             override fun onSelected(url: String) {
-                viewModel.currentUrl = url
+            //    viewModel.currentUrl = url
+                viewModel.setUrlForNetwork(url)
                 connect.isEnabled = true
             }
-
         })
 
 
@@ -102,7 +104,13 @@ class LoginFragment : Fragment() {
         })
 
         viewModel.image.observe(viewLifecycleOwner, Observer {
+            view?.findNavController()?.navigate(R.id.action_loginFragment_to_mainFragment)
+        })
 
+        viewModel.status.observe(viewLifecycleOwner, Observer {
+            if(it == Repository.ApiStatus.ERROR){
+                Toast.makeText(context, "error", Toast.LENGTH_LONG).show()
+            }
         })
     }
 
