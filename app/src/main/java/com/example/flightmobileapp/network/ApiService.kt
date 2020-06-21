@@ -11,7 +11,8 @@ import retrofit2.http.GET
 //private const val BASE_URL = "https://127.0.0.1:44383/"
 // private const val BASE_URL = "http://10.0.2.2:44383/"
 
-private const val BASE_URL = "https://api.themoviedb.org/3/movie/"
+//private const val BASE_URL = "https://api.themoviedb.org/3/movie/"
+private const val BASE_URL = "http://10.0.2.2:53411"
  var SERVER_URL = "https://api.themoviedb.org/3/movie/"
 
 
@@ -24,7 +25,8 @@ class ApiService {
      */
     interface IApiService{
     //    @GET(BASE_URL + "/api/screenshot")
-        @GET("top_rated?api_key=a921476d861fb36a167704c00cb03bfb&language=en-US&page=1")
+        //@GET("top_rated?api_key=a921476d861fb36a167704c00cb03bfb&language=en-US&page=1")
+        @GET("/api/screenshot")
         fun getImage(/*url: String*/): Deferred<MoviesList>
 
        /* @POST(BASE_URL)
