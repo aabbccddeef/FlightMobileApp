@@ -13,3 +13,10 @@ data class NetworkMovie(
     val title: String,
     val overview: String
 )
+
+data class Command(
+    val aileron: Double,
+    val rudder: Double,
+    val elevator: Double,
+    val throttle: Double
+)

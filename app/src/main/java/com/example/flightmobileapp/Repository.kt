@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.flightmobileapp.db.DatabaseEntities
 import com.example.flightmobileapp.db.ServersDatabase
 import com.example.flightmobileapp.network.ApiService
+import com.example.flightmobileapp.network.Command
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.lang.Exception
@@ -42,6 +43,26 @@ class Repository(private val database: ServersDatabase) {
                 _image.postValue(getImageWaited)
                 status.postValue(ApiStatus.DONE)
             } catch (e: Exception){
+                status.postValue(ApiStatus.ERROR)
+            }
+        }
+    }
+
+    /**
+     * async method - called with POST command , post controllers data to server
+     */
+    suspend fun uploadCommand() {
+        withContext(Dispatchers.IO) {
+            try {
+                val controllersData = Command(
+                    1.0,
+                    -1.0,
+                    0.5,
+                    0.3
+                )
+                ApiService.ServerApi.retrofitService.sendCommand(controllersData)
+                status.postValue(ApiStatus.DONE)
+            } catch (e: Exception) {
                 status.postValue(ApiStatus.ERROR)
             }
         }
