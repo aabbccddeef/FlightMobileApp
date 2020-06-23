@@ -2,7 +2,7 @@ package com.example.flightmobileapp.network
 
 import com.squareup.moshi.Json
 
-data class MoviesList(
+data class MyBitmap(
     val results: List<NetworkMovie>
 )
 

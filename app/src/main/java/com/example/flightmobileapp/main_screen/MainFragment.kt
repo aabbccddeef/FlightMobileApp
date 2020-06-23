@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.flightmobileapp.R
 import com.example.flightmobileapp.Repository
+import kotlinx.android.synthetic.main.main_fragment.*
 
 
 class MainFragment : Fragment() {
@@ -42,7 +43,7 @@ class MainFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         viewModel.image.observe(viewLifecycleOwner, Observer {
-
+            imageView.setImageBitmap(it);
         })
 
         viewModel.status.observe(viewLifecycleOwner, Observer {
@@ -53,7 +54,7 @@ class MainFragment : Fragment() {
         })
 
 
-        var timer = object : CountDownTimer(5000, 100) {
+        var timer = object : CountDownTimer(500000, 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 viewModel.connect()
             }
@@ -66,7 +67,7 @@ class MainFragment : Fragment() {
             }
         }.start()
 
-
+ //       viewModel.connect()
     }
 
 }

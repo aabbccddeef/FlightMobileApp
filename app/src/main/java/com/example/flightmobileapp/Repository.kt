@@ -5,8 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import com.example.flightmobileapp.db.DatabaseEntities
 import com.example.flightmobileapp.db.ServersDatabase
 import com.example.flightmobileapp.network.ApiService
-import com.example.flightmobileapp.network.MoviesList
-import com.example.flightmobileapp.network.SERVER_URL
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.lang.Exception
@@ -25,8 +23,8 @@ class Repository(private val database: ServersDatabase) {
         get() = _image
 */
 
-    private val _image = MutableLiveData<MoviesList>()
-    val image: LiveData<MoviesList>
+    private val _image = MutableLiveData<String>()
+    val image: LiveData<String>
         get() = _image
 
     //  lateinit var image: String
@@ -43,16 +41,16 @@ class Repository(private val database: ServersDatabase) {
                 var getImageWaited = getImageDeffered.await()
                 _image.postValue(getImageWaited)
                 status.postValue(ApiStatus.DONE)
-                var a = 1
             } catch (e: Exception){
-                var a = 1
                 status.postValue(ApiStatus.ERROR)
             }
         }
     }
 
     fun addUrlForNetwork(url: String) {
-        SERVER_URL = url
+       //SERVER_URL = url
+        ApiService.ServerApi.setUrl(url)
+        status.value = ApiService.ServerApi.status
     }
 
     /**

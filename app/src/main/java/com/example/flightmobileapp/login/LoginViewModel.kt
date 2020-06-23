@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import com.example.flightmobileapp.Repository
 import com.example.flightmobileapp.db.DatabaseEntities
 import com.example.flightmobileapp.db.getDatabase
-import com.example.flightmobileapp.network.MoviesList
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -46,7 +45,7 @@ class LoginViewModel(application: Application) : ViewModel() {
             return _image
         }*/
 
-    val image: LiveData<MoviesList>
+    val image: LiveData<String>
         get() {
             return _image
         }
