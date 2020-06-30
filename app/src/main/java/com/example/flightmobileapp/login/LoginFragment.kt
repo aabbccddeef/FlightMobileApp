@@ -94,9 +94,10 @@ class LoginFragment : Fragment() {
             false
         })
 
-        connect.setOnClickListener(View.OnClickListener {
+        connect.setOnClickListener {
             viewModel.connect()
-        })
+            view?.findNavController()?.navigate(R.id.action_loginFragment_to_mainFragment)
+        }
 
         viewModel.urls.observe(viewLifecycleOwner, Observer {
             Log.d("Login observe", it.toString())
