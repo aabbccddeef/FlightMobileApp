@@ -8,7 +8,10 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import kotlinx.coroutines.Deferred
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.Headers
+import retrofit2.http.POST
 
 //private const val BASE_URL = "https://127.0.0.1:44383/"
 // private const val BASE_URL = "http://10.0.2.2:44383/"
@@ -31,8 +34,11 @@ class ApiService {
         @GET("/api/screenshot")
         fun getImage(/*url: String*/): Deferred<String>
 
-        /* @POST(BASE_URL)
-         fun connect(): Deferred<String>*/
+        @Headers("Content-Type: application/json")
+        @POST("/api/command")
+        fun sendCommand(@Body data: Command): Deferred<String>
+       /* @POST(BASE_URL)
+        fun connect(): Deferred<String>*/
     }
 
     object ServerApi {

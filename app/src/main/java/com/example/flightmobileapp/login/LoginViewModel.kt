@@ -64,7 +64,7 @@ class LoginViewModel(application: Application) : ViewModel() {
 
     fun connect() {
         coroutineScope.launch {
-            repository.getImage()
+//            repository.getImage()
         }
     }
 

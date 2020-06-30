@@ -1,10 +1,12 @@
 package com.example.flightmobileapp
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.flightmobileapp.db.DatabaseEntities
 import com.example.flightmobileapp.db.ServersDatabase
 import com.example.flightmobileapp.network.ApiService
+import com.example.flightmobileapp.network.Command
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.lang.Exception
@@ -27,8 +29,6 @@ class Repository(private val database: ServersDatabase) {
     val image: LiveData<String>
         get() = _image
 
-    //  lateinit var image: String
-
     val urls: LiveData<List<String>> = database.serversDao.getLastFive()
 
     /**
@@ -42,6 +42,20 @@ class Repository(private val database: ServersDatabase) {
                 _image.postValue(getImageWaited)
                 status.postValue(ApiStatus.DONE)
             } catch (e: Exception){
+                status.postValue(ApiStatus.ERROR)
+            }
+        }
+    }
+
+    /**
+     * async method - called with POST command , post controllers data to server
+     */
+    suspend fun uploadCommand(command: Command) {
+        withContext(Dispatchers.IO) {
+            try {
+                ApiService.ServerApi.retrofitService.sendCommand(command)
+                status.postValue(ApiStatus.DONE)
+            } catch (e: Exception) {
                 status.postValue(ApiStatus.ERROR)
             }
         }
